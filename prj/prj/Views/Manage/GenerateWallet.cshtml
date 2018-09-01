@@ -1,0 +1,19 @@
+﻿@model GenerateWalletViewModel
+@{
+    ViewData["Title"] = "Wallet";
+    ViewData.AddActivePage(ManageNavPages.Wallet);
+}
+
+<h4>@ViewData["Title"]</h4>
+
+@if (Model.Wif == null)
+{
+    <h5>No wallet generated yet</h5>
+    <form method="post">
+        <a asp-action="GenerateWallet" class="btn btn-primary">Generate Wallet</a>
+    </form>
+}
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
