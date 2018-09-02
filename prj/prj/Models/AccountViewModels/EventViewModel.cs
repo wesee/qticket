@@ -4,21 +4,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
-namespace prj.Models.BookingViewModels
+namespace prj.Models.AccountViewModels
 {
-    public class PropertyViewModel
+    public class EventViewModel
     {
         [Required]
         public string Id { get; set; }
+
         [Required]
         public string Name { get; set; }
-        [Required]
-        public string OwnerId { get; set; }
+
         [Required]
         public string Location { get; set; }
-        [Required]
-        public double Price { get; set; }
 
-        public List<Property> Properties { get; set; }
+        public List<Event> Events { get; set; }
     }
 }

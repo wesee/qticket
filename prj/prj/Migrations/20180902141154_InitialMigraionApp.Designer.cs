@@ -10,8 +10,8 @@ using prj.Data;
 namespace prj.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180901201311_BasicProperty")]
-    partial class BasicProperty
+    [Migration("20180902141154_InitialMigraionApp")]
+    partial class InitialMigraionApp
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

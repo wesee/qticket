@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace prj.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitialMigraionApp : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -6,16 +6,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace prj.Models
 {
-    public class Property
+    public class Ticket
     {
         [Required]
-        public string Id { get; set; }
+        public string TicketId { get; set; }
+
         [Required]
         public string OwnerId { get; set; }
-        [Required]
-        public string Name { get; set; }
-        [Required]
-        public string Location { get; set; }
+
         [Required]
         public double Price { get; set; }
     }

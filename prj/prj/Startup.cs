@@ -32,7 +32,7 @@ namespace prj
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDbContext<PropertyDbContext>(options =>
+            services.AddDbContext<EventDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -41,7 +41,7 @@ namespace prj
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
-            services.AddTransient<IPropertyRepository, EFPropertyRepository>();
+            services.AddTransient<IEventRepository, EFEventRepository>();
 
             services.AddMvc();
         }

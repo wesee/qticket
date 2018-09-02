@@ -8,14 +8,14 @@ using prj.Models;
 
 namespace prj.Migrations
 {
-    public class PropertyDbContext : DbContext
+    public class EventDbContext : DbContext
     {
-        public PropertyDbContext(DbContextOptions<PropertyDbContext> options) : base(options)
+        public EventDbContext(DbContextOptions<EventDbContext> options) : base(options)
         {
 
         }
 
         //on cascade delete was set mannualy to the database
-        public DbSet<Property> Properties { get; set; }
+        public DbSet<Event> Events { get; set; }
     }
 }

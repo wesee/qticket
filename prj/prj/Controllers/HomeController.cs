@@ -8,7 +8,8 @@ using prj.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using prj.Models.BookingViewModels;
+using prj.Models.AccountViewModels;
+using prj.Models;
 using prj.Abstract;
 
 namespace prj.Controllers
@@ -16,14 +17,14 @@ namespace prj.Controllers
     public class HomeController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;
-        private readonly IPropertyRepository propertyRepisotory;
+        private readonly IEventRepository eventRepository;
 
         public HomeController(
           UserManager<ApplicationUser> _userManager,
-          IPropertyRepository _propertyRepository)
+          IEventRepository _propertyRepository)
         {
             userManager = _userManager;
-            propertyRepisotory = _propertyRepository;
+            eventRepository = _propertyRepository;
         }
 
 
@@ -34,34 +35,62 @@ namespace prj.Controllers
 
         [Authorize]
         [HttpGet]
-        public async Task<IActionResult> Properties()
+        public async Task<IActionResult> Events()
         {
-            ViewData["Message"] = "Your Properties";
+            ViewData["Message"] = "Your Events";
             var user = await userManager.GetUserAsync(User);
             if (user == null)
             {
                 throw new ApplicationException($"Unable to load user with ID '{userManager.GetUserId(User)}'.");
             }
 
-            string ownerId;
+            string ownerId = user.Id;
 
+            List<Event> events = eventRepository.FindEventsByOwnerId(ownerId);
+            var model = new EventViewModel
+            {
+                Events = events
+            };
 
-            return View();
+            return View(model);
         }
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> Properties(PropertyViewModel model)
+        public async Task<IActionResult> Events(EventViewModel model)
         {
-            ViewData["Message"] = "Your Properties";
+            ViewData["Message"] = "Add a new event!";
+            //TODO CHECK IF POSSIBLE TO CREATE
+            var user = await userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                throw new ApplicationException($"Unable to load user with ID '{userManager.GetUserId(User)}'.");
+            }
 
-            return View();
+            Event eve = new Event
+            {
+                Id = model.Id,
+                Name = model.Name,
+                Location = model.Location,
+                OwnerId = user.Id
+            };
+
+            string ownerId = user.Id;
+
+            List<Event> events = eventRepository.FindEventsByOwnerId(ownerId);
+            model.Events = events;
+            
+
+            var res = eventRepository.AddEvent(eve);
+            if (res)
+                ViewData["Message"] = "Successfully added";
+            return View(model);
         }
 
         [Authorize]
-        public IActionResult Bookings()
+        public IActionResult Tickets()
         {
-            ViewData["Message"] = "Your Bookings";
+            ViewData["Message"] = "Your Tickets";
 
             return View();
         }
