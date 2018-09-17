@@ -6,13 +6,21 @@
 
 <h4>@ViewData["Title"]</h4>
 
-@if (Model.Wif == null)
-{
-    <h5>No wallet generated yet</h5>
+<h5>your address</h5>
+
+
+@{
     <form method="post">
-        <a asp-action="GenerateWallet" class="btn btn-primary">Generate Wallet</a>
+
+
+        <div class="form-control-static">
+            <label asp-for="PublicAddress">PublicAddress</label>
+            <input asp-for="PublicAddress" class="form-control" name="PublicAddress" placeholder=@Model.PublicAddress>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 }
+
 
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")

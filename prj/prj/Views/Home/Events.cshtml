@@ -1,38 +1,69 @@
 ﻿@model EventViewModel
 @{
-    ViewData["Title"] = "Your Events";
+    ViewData["Title"] = "Create event";
 }
 
-<h4>@ViewData["Title"]</h4>
-<h5>@ViewData["Message"]</h5>
+<h1>@ViewData["Title"]</h1>
+
 <form method="post">
     <div class="form-control-static">
-        <label asp-for="Id">ID</label>
-        <input asp-for="Id" class="form-control" name="Id" placeholder="Some kind of id">
+        <label asp-for="Date">Date</label>
+        <input asp-for="Date" class="form-control" name="Date" placeholder="The date of your event">
     </div>
-    <span asp-validation-for="Id" class="text-danger"></span>
+    <span asp-validation-for="Date" class="text-danger"></span>
     <div class="form-control-static">
-        <label asp-for="Name">Name</label>
-        <input asp-for="Name" class="form-control" name="Name" placeholder="The title of your event">
+        <label asp-for="TicketAmount">TicketAmount</label>
+        <input asp-for="TicketAmount" class="form-control" name="TicketAmount" placeholder="The whole amount of ticket">
     </div>
-    <span asp-validation-for="Name" class="text-danger"></span>
+    <span asp-validation-for="TicketAmount" class="text-danger"></span>
     <div class="form-control-static">
-        <label asp-for="Location">Location</label>
-        <input asp-for="Location" class="form-control" name="Location" placeholder="Location of your event">
+        <label asp-for="TicketPrice">TicketPrice</label>
+        <input asp-for="TicketPrice" class="form-control" name="TicketPrice" placeholder="Ticket price in QTUM / 1e8">
     </div>
-    <span asp-validation-for="Location" class="text-danger"></span>
+    <span asp-validation-for="TicketPrice" class="text-danger"></span>
+    <div class="form-control-static">
+        <label asp-for="Info">Info</label>
+        <input asp-for="Info" class="form-control" name="Info" placeholder="The title of your event">
+    </div>
+    <span asp-validation-for="Info" class="text-danger"></span>
+    <div class="form-control-static">
+        <label asp-for="IsTicketTradable">Are tickets tradable</label>
+        <input asp-for="IsTicketTradable" class="checkbox" name="IsTicketTradable">
+    </div>
+    <span asp-validation-for="IsTicketTradable" class="text-danger"></span>
+    <div class="form-control-static">
+        <label asp-for="IsTicketCancelable">Are tickets cancelable</label>
+        <input asp-for="IsTicketCancelable" class="checkbox" name="IsTicketCancelable">
+    </div>
+    <span asp-validation-for="IsTicketCancelable" class="text-danger"></span>
+    <div class="form-control-static">
+        <label asp-for="LastCancelDate">LastCancelDate</label>
+        <input asp-for="LastCancelDate" class="form-control" name="LastCancelDate" placeholder="The last date possible to cancel a ticket">
+    </div>
+    <span asp-validation-for="LastCancelDate" class="text-danger"></span>
+    <div class="form-control-static">
+        <label asp-for="Wif">Wif</label>
+        <input asp-for="Wif" class="form-control" name="Wif" placeholder="Private key (wif)">
+    </div>
+    <span asp-validation-for="Wif" class="text-danger"></span>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-    }
+
+@if (Model.Link != null)
+{
+    <a href=@Model.Link>@ViewData["Message"]</a>
+}
+
+<h3>@ViewData["DbAddResult"]</h3>
 
 @{
 
     foreach (var eve in Model.Events)
     {
         <li class="list-group-item">
-            <form class="form-horizontal">
+            <form class="form-horizontal" action=@Url.Action("EventPersonalInfo", "Home", new { eve.Id }) method="post">
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">ID</label>
+                    <label class="col-sm-2 control-label">Event ID</label>
                     <div class="col-sm-10">
                         <input class="form-control" type="text" value=@eve.Id disabled>
                     </div>
@@ -40,15 +71,21 @@
                     <div class="col-sm-10">
                         <input class="form-control" type="text" value=@eve.Name disabled>
                     </div>
-                    <label class="col-sm-2 control-label">Location</label>
+                    <label class="col-sm-2 control-label">Date</label>
                     <div class="col-sm-10">
-                        <input class="form-control" type="text" value=@eve.Location disabled>
+                        <input class="form-control" type="text" value=@eve.Date disabled>
                     </div>
+                    <label class="col-sm-2 control-label">Price</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" type="text" value=@eve.TicketPrice disabled>
+                    </div>
+                    <button type="submit" class="btn btn-info col-sm-1" value="Submit">View</button>
                 </div>
             </form>
         </li>
-
     }
+}
+
 
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")

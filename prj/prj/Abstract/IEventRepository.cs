@@ -8,10 +8,16 @@ namespace prj.Abstract
 {
     public interface IEventRepository
     {
-        Event FindEvent(string name);
+        List<Event> Events();
+
+        Event FindEvent(uint id);
 
         List<Event> FindEventsByOwnerId(string ownerId);
 
+        List<Ticket> FindTicketByOwnerId(string ownerId);
+
         bool AddEvent(Event pr);
+
+        bool AddTicket(Ticket pr);
     }
 }

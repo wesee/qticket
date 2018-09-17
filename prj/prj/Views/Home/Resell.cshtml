@@ -1,0 +1,51 @@
+﻿@model ResellTicketViewModel
+@{
+    ViewData["Title"] = "Resell ticket";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post">
+    <div class="form-control-static">
+        <label asp-for="TicketId">TicketId</label>
+        <input asp-for="TicketId" class="form-control" name="TicketId" placeholder="ticket ID">
+    </div>
+    <span asp-validation-for="TicketId" class="text-danger"></span>
+    <div class="form-control-static">
+        <label asp-for="Price">TicketPrice</label>
+        <input asp-for="Price" class="form-control" name="Price" placeholder="Ticket price in QTUM / 1e8">
+    </div>
+    <div class="form-control-static">
+        <label asp-for="Wif">Wif</label>
+        <input asp-for="Wif" class="form-control" name="Wif" placeholder="Private key (wif)">
+    </div>
+    <span asp-validation-for="Wif" class="text-danger"></span>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+@if (Model.Link != null)
+{
+    <a href=@Model.Link>@ViewData["Message"]</a>
+}
+<h3>Your tickets</h3>
+
+
+@{
+    foreach (var eve in Model.Tickets)
+    {
+        <li class="list-group-item">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Ticket ID</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" value=@eve.TicketId disabled>
+                    </div>
+                    <label class="col-sm-2 control-label">Event ID</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" value=@eve.EventId disabled>
+                    </div>
+                </div>
+            </form>
+        </li>
+    }
+}

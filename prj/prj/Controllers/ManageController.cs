@@ -502,9 +502,7 @@ namespace prj.Controllers
 
             var model = new GenerateWalletViewModel()
             {
-                PublicAddress = user.PublicAddress,
-                Wif = user.Wif,
-                StatusMessage = StatusMessage
+                PublicAddress = user.PublicAddress
             };
 
             return View(model);
@@ -512,7 +510,7 @@ namespace prj.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> GenerateWallet(IndexViewModel model)
+        public async Task<IActionResult> GenerateWallet(GenerateWalletViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -525,9 +523,11 @@ namespace prj.Controllers
                 throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
+            user.PublicAddress = model.PublicAddress;
+            var result = await _userManager.UpdateAsync(user);
+
             //Generate Wallet Here
 
-            StatusMessage = "Your wallet was generated";
             return RedirectToAction(nameof(GenerateWallet));
         }
 

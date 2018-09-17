@@ -17,22 +17,52 @@ namespace prj.Implementations
             db = _db;
         }
 
-        public Event FindEvent(string name)
+        public List<Event> Events()
         {
-            return db.Events.FirstOrDefault(t => t.Name.Contains(name));
+            return db.Events.ToList();
+        }
+
+        public Event FindEvent(uint id)
+        {
+            return db.Events.FirstOrDefault(t => t.Id == id);
         }
 
         public List<Event> FindEventsByOwnerId(string ownerId)
         {
-            return db.Events.Where(t => t.OwnerId == ownerId).ToList();
+            return db.Events.Where(t => t.Owner == ownerId).ToList();
+        }
+
+        public List<Ticket> FindTicketByOwnerId(string ownerId)
+        {
+            return db.Tickets.Where(t => t.Owner == ownerId).ToList();
+        }
+
+        public bool AddTicket(Ticket t)
+        {
+            try
+            {
+                db.Add(t);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public bool AddEvent(Event eve)
         {
-            //TODO: CHECK IF ITS POSSIBLE TO ADD
-            db.Add(eve);
-            db.SaveChanges();
-            return true;
+            try
+            {
+                db.Add(eve);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

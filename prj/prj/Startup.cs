@@ -14,6 +14,7 @@ using prj.Services;
 using prj.Migrations;
 using prj.Abstract;
 using prj.Implementations;
+using Microsoft.AspNetCore.NodeServices;
 
 namespace prj
 {
@@ -42,8 +43,9 @@ namespace prj
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<IEventRepository, EFEventRepository>();
-
+            services.AddTransient<IBlockchainRepository, QtumRepository>();
             services.AddMvc();
+            services.AddNodeServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

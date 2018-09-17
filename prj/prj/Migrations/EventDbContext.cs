@@ -17,5 +17,7 @@ namespace prj.Migrations
 
         //on cascade delete was set mannualy to the database
         public DbSet<Event> Events { get; set; }
+
+        public DbSet<Ticket> Tickets { get; set; }
     }
 }

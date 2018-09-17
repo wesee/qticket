@@ -9,12 +9,15 @@ namespace prj.Models
     public class Ticket
     {
         [Required]
-        public string TicketId { get; set; }
+        public uint TicketId { get; set; }
 
         [Required]
-        public string OwnerId { get; set; }
+        public uint EventId { get; set; }
 
         [Required]
-        public double Price { get; set; }
+        public string Owner { get; set; }
+
+        [Required]
+        public uint Price { get; set; }
     }
 }

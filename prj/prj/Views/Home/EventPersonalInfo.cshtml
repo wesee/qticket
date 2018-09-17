@@ -1,0 +1,85 @@
+﻿@model Event
+
+@if (Model == null)
+{
+    <h2>This event does not exist, sorry!:(</h2>
+}
+else
+{
+    <h2>Event Info</h2>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Event ID</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" value=@Model.Id disabled>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Date</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" value=@Model.Date disabled>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Ticket Amount</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" value=@Model.TicketAmount disabled>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Ticket Price</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" value=@Model.TicketPrice disabled>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Info</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" value=@Model.Name disabled>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Is ticket tradable</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" value=@Model.IsTicketTradable.ToString() disabled>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Is ticket Cancelable</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" value=@Model.IsTicketCancelable.ToString() disabled>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Date</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" value=@Model.Date disabled>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Tickets Bought</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" value=@Model.TicketsBought disabled>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Tickets Canceled</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" value=@Model.TicketsCanceled disabled>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Is event verified</label>
+            <div class="col-sm-10">
+                <input class="form-control"  type="text" value=@Model.Verified.ToString() disabled>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Owner</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" value=@Model.Owner disabled>
+            </div>
+        </div>
+    </form>
+
+}

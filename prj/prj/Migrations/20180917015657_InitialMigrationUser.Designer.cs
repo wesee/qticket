@@ -10,8 +10,8 @@ using prj.Data;
 namespace prj.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180902141154_InitialMigraionApp")]
-    partial class InitialMigraionApp
+    [Migration("20180917015657_InitialMigrationUser")]
+    partial class InitialMigrationUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
