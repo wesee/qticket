@@ -8,7 +8,7 @@ yarn add qtumjs-wallet
 yarn add ethjs-abi
 yarn add bs58check
 ```
-#manualjs
+# manualjs
 Some js scripts to interact with SC without website
-#serverRaspPi
+# serverRaspPi
 webserver for raspi with blockchain interactions
