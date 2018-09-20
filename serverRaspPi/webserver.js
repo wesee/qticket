@@ -43,16 +43,16 @@ io.sockets.on('connection', function (socket) {// WebSocket Connection
     wallet.contractCall(contractAddress, encodedData).then(exeres => {
       const output = exeres['executionResult']
       const help = output['output']
-      const final = fromhexaddress(help.replace(/^0+/, ''))
-      console.log(final);
+      const reswif = fromhexaddress(help.replace(/^0+/, ''))
+      console.log(reswif);
       const encodedData2 = abi.encodeMethod(TicketingContractAbi[20], [ticketId]).substr(2);
       wallet.contractCall(contractAddress, encodedData2).then(exeres2 => {
-        const output2 = exeres2['executionResult']
-        const help2 = output2['output']
-        const final2 = parseInt(help2, 16);
-        console.log(final2);
+        output = exeres['executionResult']
+        help = output['output']
+        const resid = parseInt(help, 16);
+        console.log(resid);
         const checker = wallet.address;
-        if (checker == final && final2 == thisRaspberryPiEventId) {
+        if (checker == reswif && resid == thisRaspberryPiEventId) {
           for (i = 0; i < arrtrue.length; i++) {
             var LED = new Gpio(arrtrue[i], 'out');
             LED.writeSync(1)
