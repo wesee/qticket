@@ -46,6 +46,12 @@
         <input asp-for="Wif" class="form-control" name="Wif" placeholder="Private key (wif)">
     </div>
     <span asp-validation-for="Wif" class="text-danger"></span>
+    <div class="form-group">
+        <div class="col-md-10">
+            <p>Upload one or more files using this form:</p>
+            <input type="file" name="files" />
+        </div>
+    </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 

@@ -33,5 +33,8 @@ namespace prj.Models
         public string Owner { get; set; }
         [Required]
         public bool Verified { get; set; }
+
+        public byte[] Poster { get; set; }
+
     }
 }

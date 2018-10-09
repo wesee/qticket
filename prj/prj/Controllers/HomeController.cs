@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using prj.Models.AccountViewModels;
 using prj.Abstract;
 using prj.Implementations;
+using System.IO;
 
 namespace prj.Controllers
 {
@@ -84,6 +85,11 @@ namespace prj.Controllers
 
             var eventId = await blockchainRepository.GetEventCount();
 
+            var memoryStream = new MemoryStream();
+            
+            await model.Poster.CopyToAsync(memoryStream);
+            
+
             bool addedToDb = false;
             if (res != "smth failed" && eventId != 1000000)
             {
@@ -100,7 +106,8 @@ namespace prj.Controllers
                     TicketsBought = 0,
                     TicketsCanceled = 0,
                     Owner = owner,
-                    Verified = false
+                    Verified = false,
+                    Poster = memoryStream.ToArray()
                 };
                 addedToDb = eventRepository.AddEvent(eve);
             }

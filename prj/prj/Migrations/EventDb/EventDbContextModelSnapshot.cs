@@ -38,6 +38,8 @@ namespace prj.Migrations.EventDb
                     b.Property<string>("Owner")
                         .IsRequired();
 
+                    b.Property<byte[]>("Poster");
+
                     b.Property<long>("TicketAmount");
 
                     b.Property<long>("TicketPrice");

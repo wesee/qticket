@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace prj.Migrations.EventDb
 {
-    public partial class InitialMigrationEvent : Migration
+    public partial class posterMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -22,7 +22,8 @@ namespace prj.Migrations.EventDb
                     TicketsBought = table.Column<long>(nullable: false),
                     TicketsCanceled = table.Column<long>(nullable: false),
                     Owner = table.Column<string>(nullable: false),
-                    Verified = table.Column<bool>(nullable: false)
+                    Verified = table.Column<bool>(nullable: false),
+                    Poster = table.Column<byte[]>(nullable: true)
                 },
                 constraints: table =>
                 {

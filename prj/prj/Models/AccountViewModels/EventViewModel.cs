@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.Security;
+using Microsoft.AspNetCore.Http;
 
 namespace prj.Models.AccountViewModels
 {
@@ -30,5 +31,7 @@ namespace prj.Models.AccountViewModels
         public List<Event> Events { get; set; }
 
         public string Link { get; set; }
+
+        public IFormFile Poster { get; set; }
     }
 }

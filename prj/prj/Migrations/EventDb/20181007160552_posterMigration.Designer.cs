@@ -10,8 +10,8 @@ using prj.Migrations;
 namespace prj.Migrations.EventDb
 {
     [DbContext(typeof(EventDbContext))]
-    [Migration("20180917015739_InitialMigrationEvent")]
-    partial class InitialMigrationEvent
+    [Migration("20181007160552_posterMigration")]
+    partial class posterMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -39,6 +39,8 @@ namespace prj.Migrations.EventDb
 
                     b.Property<string>("Owner")
                         .IsRequired();
+
+                    b.Property<byte[]>("Poster");
 
                     b.Property<long>("TicketAmount");
 
